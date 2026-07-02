@@ -26,6 +26,7 @@ func init() {
 		databasesDef,
 		dataMetricFunctionReferencesDef,
 		eventTablesDef,
+		externalAccessIntegrationsDef,
 		externalFunctionsDef,
 		externalVolumesDef,
 		fileFormatsDef,
