@@ -17,12 +17,12 @@ type CreateStreamlitRequest struct {
 	RootLocation               string                 // required
 	MainFile                   string                 // required
 	QueryWarehouse             *AccountObjectIdentifier
-	ExternalAccessIntegrations *ExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations *StreamlitExternalAccessIntegrationsRequest
 	Title                      *string
 	Comment                    *string
 }
 
-type ExternalAccessIntegrationsRequest struct {
+type StreamlitExternalAccessIntegrationsRequest struct {
 	ExternalAccessIntegrations []AccountObjectIdentifier // required
 }
 
@@ -38,7 +38,7 @@ type StreamlitSetRequest struct {
 	RootLocation               *string
 	MainFile                   *string
 	QueryWarehouse             *AccountObjectIdentifier
-	ExternalAccessIntegrations *ExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations *StreamlitExternalAccessIntegrationsRequest
 	Comment                    *string
 	Title                      *string
 }
