@@ -496,7 +496,7 @@ func TestAcc_Service_basic_fromSpecification(t *testing.T) {
 							WithAutoSuspendSecs(4242).
 							WithAutoResume(true).
 							WithQueryWarehouse(testClient().Ids.SnowflakeWarehouseId()).
-							WithExternalAccessIntegrations(*sdk.NewServiceExternalAccessIntegrationsRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
+							WithExternalAccessIntegrations(*sdk.NewExternalAccessIntegrationsListRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
 							WithComment(random.Comment()),
 					))
 				},

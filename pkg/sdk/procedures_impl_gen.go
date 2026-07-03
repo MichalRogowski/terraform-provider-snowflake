@@ -431,14 +431,16 @@ func (r *AlterProcedureRequest) toOpts() *AlterProcedureOptions {
 	}
 	if r.Set != nil {
 		opts.Set = &ProcedureSet{
-			Comment:                    r.Set.Comment,
-			ExternalAccessIntegrations: r.Set.ExternalAccessIntegrations,
-			AutoEventLogging:           r.Set.AutoEventLogging,
-			EnableConsoleOutput:        r.Set.EnableConsoleOutput,
-			LogLevel:                   r.Set.LogLevel,
-			LogEventLevel:              r.Set.LogEventLevel,
-			MetricLevel:                r.Set.MetricLevel,
-			TraceLevel:                 r.Set.TraceLevel,
+			Comment:             r.Set.Comment,
+			AutoEventLogging:    r.Set.AutoEventLogging,
+			EnableConsoleOutput: r.Set.EnableConsoleOutput,
+			LogLevel:            r.Set.LogLevel,
+			LogEventLevel:       r.Set.LogEventLevel,
+			MetricLevel:         r.Set.MetricLevel,
+			TraceLevel:          r.Set.TraceLevel,
+		}
+		if r.Set.ExternalAccessIntegrations != nil {
+			opts.Set.ExternalAccessIntegrations = r.Set.ExternalAccessIntegrations.toOpts()
 		}
 		if r.Set.SecretsList != nil {
 			opts.Set.SecretsList = r.Set.SecretsList.toOpts()

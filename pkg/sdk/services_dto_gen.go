@@ -18,7 +18,7 @@ type CreateServiceRequest struct {
 	FromSpecification          *ServiceFromSpecificationRequest
 	FromSpecificationTemplate  *ServiceFromSpecificationTemplateRequest
 	AutoSuspendSecs            *int
-	ExternalAccessIntegrations *ServiceExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations *ExternalAccessIntegrationsListRequest
 	AutoResume                 *bool
 	MinInstances               *int
 	MinReadyInstances          *int
@@ -39,10 +39,6 @@ type ServiceFromSpecificationTemplateRequest struct {
 	SpecificationTemplateFile *string
 	SpecificationTemplate     *string
 	Using                     []ListItem // required
-}
-
-type ServiceExternalAccessIntegrationsRequest struct {
-	ExternalAccessIntegrations []AccountObjectIdentifier // required
 }
 
 type AlterServiceRequest struct {
@@ -72,7 +68,7 @@ type ServiceSetRequest struct {
 	MinReadyInstances          *int
 	QueryWarehouse             *AccountObjectIdentifier
 	AutoResume                 *bool
-	ExternalAccessIntegrations *ServiceExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations *ExternalAccessIntegrationsListRequest
 	Comment                    *string
 }
 
@@ -112,7 +108,7 @@ type ExecuteJobServiceRequest struct {
 	Async                               *bool
 	QueryWarehouse                      *AccountObjectIdentifier
 	Comment                             *string
-	ExternalAccessIntegrations          *ServiceExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations          *ExternalAccessIntegrationsListRequest
 	JobServiceFromSpecification         *JobServiceFromSpecificationRequest
 	JobServiceFromSpecificationTemplate *JobServiceFromSpecificationTemplateRequest
 	Tag                                 []TagAssociation

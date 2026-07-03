@@ -276,13 +276,13 @@ func ReadServiceCommonFunc(withExternalChangesMarking bool, extraOutputMappingsF
 	}
 }
 
-func ToServiceExternalAccessIntegrationsRequest(value any) (sdk.ServiceExternalAccessIntegrationsRequest, error) {
+func ToServiceExternalAccessIntegrationsRequest(value any) (sdk.ExternalAccessIntegrationsListRequest, error) {
 	raw := expandStringList(value.(*schema.Set).List())
 	integrations := make([]sdk.AccountObjectIdentifier, len(raw))
 	for i, v := range raw {
 		integrations[i] = sdk.NewAccountObjectIdentifier(v)
 	}
-	return sdk.ServiceExternalAccessIntegrationsRequest{
+	return sdk.ExternalAccessIntegrationsListRequest{
 		ExternalAccessIntegrations: integrations,
 	}, nil
 }

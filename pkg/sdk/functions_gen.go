@@ -218,14 +218,14 @@ type AlterFunctionOptions struct {
 }
 
 type FunctionSet struct {
-	Comment                    *string                   `ddl:"parameter,single_quotes" sql:"COMMENT"`
-	ExternalAccessIntegrations []AccountObjectIdentifier `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
-	SecretsList                *SecretsList              `ddl:"parameter,parentheses" sql:"SECRETS"`
-	EnableConsoleOutput        *bool                     `ddl:"parameter" sql:"ENABLE_CONSOLE_OUTPUT"`
-	LogLevel                   *LogLevel                 `ddl:"parameter,single_quotes" sql:"LOG_LEVEL"`
-	LogEventLevel              *LogLevel                 `ddl:"parameter,single_quotes" sql:"LOG_EVENT_LEVEL"`
-	MetricLevel                *MetricLevel              `ddl:"parameter,single_quotes" sql:"METRIC_LEVEL"`
-	TraceLevel                 *TraceLevel               `ddl:"parameter,single_quotes" sql:"TRACE_LEVEL"`
+	Comment                    *string                         `ddl:"parameter,single_quotes" sql:"COMMENT"`
+	ExternalAccessIntegrations *ExternalAccessIntegrationsList `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
+	SecretsList                *SecretsList                    `ddl:"parameter,parentheses" sql:"SECRETS"`
+	EnableConsoleOutput        *bool                           `ddl:"parameter" sql:"ENABLE_CONSOLE_OUTPUT"`
+	LogLevel                   *LogLevel                       `ddl:"parameter,single_quotes" sql:"LOG_LEVEL"`
+	LogEventLevel              *LogLevel                       `ddl:"parameter,single_quotes" sql:"LOG_EVENT_LEVEL"`
+	MetricLevel                *MetricLevel                    `ddl:"parameter,single_quotes" sql:"METRIC_LEVEL"`
+	TraceLevel                 *TraceLevel                     `ddl:"parameter,single_quotes" sql:"TRACE_LEVEL"`
 }
 
 type SecretsList struct {

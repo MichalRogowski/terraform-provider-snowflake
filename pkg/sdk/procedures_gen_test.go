@@ -1200,6 +1200,17 @@ func TestProcedures_Alter(t *testing.T) {
 		assertOptsValidAndSQLEquals(t, opts, `ALTER PROCEDURE IF EXISTS %s SET SECRETS = ('abc' = %s)`, id.FullyQualifiedName(), secretId.FullyQualifiedName())
 	})
 
+	t.Run("alter: set external access integrations", func(t *testing.T) {
+		integrationId := NewAccountObjectIdentifier("integration")
+		opts := defaultOpts()
+		opts.Set = &ProcedureSet{
+			ExternalAccessIntegrations: &ExternalAccessIntegrationsList{
+				ExternalAccessIntegrations: []AccountObjectIdentifier{integrationId},
+			},
+		}
+		assertOptsValidAndSQLEquals(t, opts, `ALTER PROCEDURE IF EXISTS %s SET EXTERNAL_ACCESS_INTEGRATIONS = (%s)`, id.FullyQualifiedName(), integrationId.FullyQualifiedName())
+	})
+
 	t.Run("alter: unset", func(t *testing.T) {
 		opts := defaultOpts()
 		opts.Unset = &ProcedureUnset{

@@ -84,9 +84,7 @@ func (r *CreateStreamlitRequest) toOpts() *CreateStreamlitOptions {
 		Comment:        r.Comment,
 	}
 	if r.ExternalAccessIntegrations != nil {
-		opts.ExternalAccessIntegrations = &ExternalAccessIntegrations{
-			ExternalAccessIntegrations: r.ExternalAccessIntegrations.ExternalAccessIntegrations,
-		}
+		opts.ExternalAccessIntegrations = r.ExternalAccessIntegrations.toOpts()
 	}
 	return opts
 }
@@ -106,9 +104,7 @@ func (r *AlterStreamlitRequest) toOpts() *AlterStreamlitOptions {
 			Title:          r.Set.Title,
 		}
 		if r.Set.ExternalAccessIntegrations != nil {
-			opts.Set.ExternalAccessIntegrations = &ExternalAccessIntegrations{
-				ExternalAccessIntegrations: r.Set.ExternalAccessIntegrations.ExternalAccessIntegrations,
-			}
+			opts.Set.ExternalAccessIntegrations = r.Set.ExternalAccessIntegrations.toOpts()
 		}
 	}
 	if r.Unset != nil {
@@ -179,4 +175,10 @@ func (r streamlitsDetailRow) convert() (*StreamlitDetail, error) {
 		return nil, err
 	}
 	return result, nil
+}
+
+func (r *ExternalAccessIntegrationsListRequest) toOpts() *ExternalAccessIntegrationsList {
+	return &ExternalAccessIntegrationsList{
+		ExternalAccessIntegrations: r.ExternalAccessIntegrations,
+	}
 }

@@ -25,7 +25,7 @@ func (s *CreateOpenflowRuntimeRequest) WithIfNotExists(ifNotExists bool) *Create
 	return s
 }
 
-func (s *CreateOpenflowRuntimeRequest) WithExternalAccessIntegrations(externalAccessIntegrations OpenflowRuntimeExternalAccessIntegrationsRequest) *CreateOpenflowRuntimeRequest {
+func (s *CreateOpenflowRuntimeRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *CreateOpenflowRuntimeRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }
@@ -38,14 +38,6 @@ func (s *CreateOpenflowRuntimeRequest) WithDisplayName(displayName string) *Crea
 func (s *CreateOpenflowRuntimeRequest) WithComment(comment string) *CreateOpenflowRuntimeRequest {
 	s.Comment = &comment
 	return s
-}
-
-func NewOpenflowRuntimeExternalAccessIntegrationsRequest(
-	externalAccessIntegrations []AccountObjectIdentifier,
-) *OpenflowRuntimeExternalAccessIntegrationsRequest {
-	s := OpenflowRuntimeExternalAccessIntegrationsRequest{}
-	s.ExternalAccessIntegrations = externalAccessIntegrations
-	return &s
 }
 
 func NewAlterOpenflowRuntimeRequest(
@@ -131,7 +123,7 @@ func (s *OpenflowRuntimeSetRequest) WithExecuteAsRole(executeAsRole AccountObjec
 	return s
 }
 
-func (s *OpenflowRuntimeSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations OpenflowRuntimeExternalAccessIntegrationsRequest) *OpenflowRuntimeSetRequest {
+func (s *OpenflowRuntimeSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *OpenflowRuntimeSetRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }

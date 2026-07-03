@@ -238,7 +238,7 @@ func CreateContextStreamlit(ctx context.Context, d *schema.ResourceData, meta an
 		for i, v := range raw {
 			integrations[i] = sdk.NewAccountObjectIdentifier(v)
 		}
-		req.WithExternalAccessIntegrations(sdk.ExternalAccessIntegrationsRequest{
+		req.WithExternalAccessIntegrations(sdk.ExternalAccessIntegrationsListRequest{
 			ExternalAccessIntegrations: integrations,
 		})
 	}
@@ -405,7 +405,7 @@ func UpdateContextStreamlit(ctx context.Context, d *schema.ResourceData, meta an
 			}
 			integrations[i] = integrationId
 		}
-		set.WithExternalAccessIntegrations(sdk.ExternalAccessIntegrationsRequest{
+		set.WithExternalAccessIntegrations(sdk.ExternalAccessIntegrationsListRequest{
 			ExternalAccessIntegrations: integrations,
 		})
 	}

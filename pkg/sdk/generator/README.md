@@ -264,7 +264,10 @@ OptionalSharedQueryStructField("Secrets", sharedStruct, g.ParameterOptions().SQL
 - In all objects (including the originator), the `toOpts` mapping calls `.toOpts()` instead of inlining the field mapping.
 - Reusing objects skip struct/DTO/constructor generation for the shared field.
 
-See [functions_def.go](defs/functions_def.go) (originator) and [notebooks_def.go](defs/notebooks_def.go) (reuser).
+> **Important**: the standalone `toOpts()` method is emitted once per *plain* (non-shared) usage of the struct, so a shared struct must have exactly one plain usage across all definitions — the canonical one in the originating object. Every other usage, **including any additional usages within the originating object itself**, must go through `OptionalSharedQueryStructField`; otherwise duplicate `toOpts()` methods are generated and the SDK package fails to compile.
+
+See [functions_def.go](defs/functions_def.go) (originator) and [notebooks_def.go](defs/notebooks_def.go) (reuser) for `SecretsList`,
+and [streamlits_def.go](defs/streamlits_def.go) (originator) with [services_def.go](defs/services_def.go), [functions_def.go](defs/functions_def.go), [procedures_def.go](defs/procedures_def.go), and [openflow_runtimes_def.go](defs/openflow_runtimes_def.go) (reusers) for `ExternalAccessIntegrationsList`.
 
 ### Potential Improvements
 

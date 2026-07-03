@@ -22,26 +22,22 @@ type Services interface {
 
 // CreateServiceOptions is based on https://docs.snowflake.com/en/sql-reference/sql/create-service.
 type CreateServiceOptions struct {
-	create                     bool                               `ddl:"static" sql:"CREATE"`
-	service                    bool                               `ddl:"static" sql:"SERVICE"`
-	IfNotExists                *bool                              `ddl:"keyword" sql:"IF NOT EXISTS"`
-	name                       SchemaObjectIdentifier             `ddl:"identifier"`
-	InComputePool              AccountObjectIdentifier            `ddl:"identifier" sql:"IN COMPUTE POOL"`
-	FromSpecification          *ServiceFromSpecification          `ddl:"keyword"`
-	FromSpecificationTemplate  *ServiceFromSpecificationTemplate  `ddl:"keyword"`
-	AutoSuspendSecs            *int                               `ddl:"parameter" sql:"AUTO_SUSPEND_SECS"`
-	ExternalAccessIntegrations *ServiceExternalAccessIntegrations `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
-	AutoResume                 *bool                              `ddl:"parameter" sql:"AUTO_RESUME"`
-	MinInstances               *int                               `ddl:"parameter" sql:"MIN_INSTANCES"`
-	MinReadyInstances          *int                               `ddl:"parameter" sql:"MIN_READY_INSTANCES"`
-	MaxInstances               *int                               `ddl:"parameter" sql:"MAX_INSTANCES"`
-	QueryWarehouse             *AccountObjectIdentifier           `ddl:"identifier,equals" sql:"QUERY_WAREHOUSE"`
-	Tag                        []TagAssociation                   `ddl:"keyword,parentheses" sql:"TAG"`
-	Comment                    *string                            `ddl:"parameter,single_quotes" sql:"COMMENT"`
-}
-
-type ServiceExternalAccessIntegrations struct {
-	ExternalAccessIntegrations []AccountObjectIdentifier `ddl:"list,must_parentheses"`
+	create                     bool                              `ddl:"static" sql:"CREATE"`
+	service                    bool                              `ddl:"static" sql:"SERVICE"`
+	IfNotExists                *bool                             `ddl:"keyword" sql:"IF NOT EXISTS"`
+	name                       SchemaObjectIdentifier            `ddl:"identifier"`
+	InComputePool              AccountObjectIdentifier           `ddl:"identifier" sql:"IN COMPUTE POOL"`
+	FromSpecification          *ServiceFromSpecification         `ddl:"keyword"`
+	FromSpecificationTemplate  *ServiceFromSpecificationTemplate `ddl:"keyword"`
+	AutoSuspendSecs            *int                              `ddl:"parameter" sql:"AUTO_SUSPEND_SECS"`
+	ExternalAccessIntegrations *ExternalAccessIntegrationsList   `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
+	AutoResume                 *bool                             `ddl:"parameter" sql:"AUTO_RESUME"`
+	MinInstances               *int                              `ddl:"parameter" sql:"MIN_INSTANCES"`
+	MinReadyInstances          *int                              `ddl:"parameter" sql:"MIN_READY_INSTANCES"`
+	MaxInstances               *int                              `ddl:"parameter" sql:"MAX_INSTANCES"`
+	QueryWarehouse             *AccountObjectIdentifier          `ddl:"identifier,equals" sql:"QUERY_WAREHOUSE"`
+	Tag                        []TagAssociation                  `ddl:"keyword,parentheses" sql:"TAG"`
+	Comment                    *string                           `ddl:"parameter,single_quotes" sql:"COMMENT"`
 }
 
 type ListItem struct {
@@ -89,14 +85,14 @@ type Restore struct {
 }
 
 type ServiceSet struct {
-	MinInstances               *int                               `ddl:"parameter" sql:"MIN_INSTANCES"`
-	MaxInstances               *int                               `ddl:"parameter" sql:"MAX_INSTANCES"`
-	AutoSuspendSecs            *int                               `ddl:"parameter" sql:"AUTO_SUSPEND_SECS"`
-	MinReadyInstances          *int                               `ddl:"parameter" sql:"MIN_READY_INSTANCES"`
-	QueryWarehouse             *AccountObjectIdentifier           `ddl:"identifier,equals" sql:"QUERY_WAREHOUSE"`
-	AutoResume                 *bool                              `ddl:"parameter" sql:"AUTO_RESUME"`
-	ExternalAccessIntegrations *ServiceExternalAccessIntegrations `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
-	Comment                    *string                            `ddl:"parameter,single_quotes" sql:"COMMENT"`
+	MinInstances               *int                            `ddl:"parameter" sql:"MIN_INSTANCES"`
+	MaxInstances               *int                            `ddl:"parameter" sql:"MAX_INSTANCES"`
+	AutoSuspendSecs            *int                            `ddl:"parameter" sql:"AUTO_SUSPEND_SECS"`
+	MinReadyInstances          *int                            `ddl:"parameter" sql:"MIN_READY_INSTANCES"`
+	QueryWarehouse             *AccountObjectIdentifier        `ddl:"identifier,equals" sql:"QUERY_WAREHOUSE"`
+	AutoResume                 *bool                           `ddl:"parameter" sql:"AUTO_RESUME"`
+	ExternalAccessIntegrations *ExternalAccessIntegrationsList `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
+	Comment                    *string                         `ddl:"parameter,single_quotes" sql:"COMMENT"`
 }
 
 type ServiceUnset struct {
@@ -280,7 +276,7 @@ type ExecuteJobServiceOptions struct {
 	Async                               *bool                                `ddl:"parameter" sql:"ASYNC"`
 	QueryWarehouse                      *AccountObjectIdentifier             `ddl:"identifier,equals" sql:"QUERY_WAREHOUSE"`
 	Comment                             *string                              `ddl:"parameter,single_quotes" sql:"COMMENT"`
-	ExternalAccessIntegrations          *ServiceExternalAccessIntegrations   `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
+	ExternalAccessIntegrations          *ExternalAccessIntegrationsList      `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
 	JobServiceFromSpecification         *JobServiceFromSpecification         `ddl:"keyword"`
 	JobServiceFromSpecificationTemplate *JobServiceFromSpecificationTemplate `ddl:"keyword"`
 	Tag                                 []TagAssociation                     `ddl:"keyword,parentheses" sql:"TAG"`

@@ -29,7 +29,7 @@ func (s *CreateStreamlitRequest) WithQueryWarehouse(queryWarehouse AccountObject
 	return s
 }
 
-func (s *CreateStreamlitRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsRequest) *CreateStreamlitRequest {
+func (s *CreateStreamlitRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *CreateStreamlitRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }
@@ -44,10 +44,10 @@ func (s *CreateStreamlitRequest) WithComment(comment string) *CreateStreamlitReq
 	return s
 }
 
-func NewExternalAccessIntegrationsRequest(
+func NewExternalAccessIntegrationsListRequest(
 	externalAccessIntegrations []AccountObjectIdentifier,
-) *ExternalAccessIntegrationsRequest {
-	s := ExternalAccessIntegrationsRequest{}
+) *ExternalAccessIntegrationsListRequest {
+	s := ExternalAccessIntegrationsListRequest{}
 	s.ExternalAccessIntegrations = externalAccessIntegrations
 	return &s
 }
@@ -100,7 +100,7 @@ func (s *StreamlitSetRequest) WithQueryWarehouse(queryWarehouse AccountObjectIde
 	return s
 }
 
-func (s *StreamlitSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsRequest) *StreamlitSetRequest {
+func (s *StreamlitSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *StreamlitSetRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }

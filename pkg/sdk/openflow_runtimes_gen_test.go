@@ -67,7 +67,7 @@ func TestOpenflowRuntimes_Create(t *testing.T) {
 			NodeType:      OpenflowRuntimeNodeTypeLarge,
 			MinNodes:      2,
 			MaxNodes:      5,
-			ExternalAccessIntegrations: &OpenflowRuntimeExternalAccessIntegrations{
+			ExternalAccessIntegrations: &ExternalAccessIntegrationsList{
 				ExternalAccessIntegrations: []AccountObjectIdentifier{eaiId},
 			},
 			DisplayName: String("My Runtime"),
@@ -187,7 +187,7 @@ func TestOpenflowRuntimes_Alter(t *testing.T) {
 			MinNodes:      Int(2),
 			MaxNodes:      Int(5),
 			ExecuteAsRole: &roleId,
-			ExternalAccessIntegrations: &OpenflowRuntimeExternalAccessIntegrations{
+			ExternalAccessIntegrations: &ExternalAccessIntegrationsList{
 				ExternalAccessIntegrations: []AccountObjectIdentifier{eaiId},
 			},
 			DisplayName: String("Updated Runtime"),

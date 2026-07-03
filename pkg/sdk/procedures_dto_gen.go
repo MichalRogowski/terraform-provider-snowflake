@@ -175,7 +175,7 @@ type AlterProcedureRequest struct {
 
 type ProcedureSetRequest struct {
 	Comment                    *string
-	ExternalAccessIntegrations []AccountObjectIdentifier
+	ExternalAccessIntegrations *ExternalAccessIntegrationsListRequest
 	SecretsList                *SecretsListRequest
 	AutoEventLogging           *AutoEventLogging
 	EnableConsoleOutput        *bool

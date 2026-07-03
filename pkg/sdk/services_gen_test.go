@@ -281,7 +281,7 @@ func TestServices_Create(t *testing.T) {
 			Specification: String("SPEC"),
 		}
 		opts.AutoSuspendSecs = Pointer(600)
-		opts.ExternalAccessIntegrations = &ServiceExternalAccessIntegrations{
+		opts.ExternalAccessIntegrations = &ExternalAccessIntegrationsList{
 			ExternalAccessIntegrations: []AccountObjectIdentifier{
 				integration1Id,
 			},
@@ -625,7 +625,7 @@ func TestServices_Alter(t *testing.T) {
 			MinReadyInstances: Pointer(1),
 			QueryWarehouse:    Pointer(warehouseId),
 			AutoResume:        Bool(true),
-			ExternalAccessIntegrations: &ServiceExternalAccessIntegrations{
+			ExternalAccessIntegrations: &ExternalAccessIntegrationsList{
 				ExternalAccessIntegrations: []AccountObjectIdentifier{
 					integration1Id,
 					integration2Id,
@@ -1012,7 +1012,7 @@ func TestServices_ExecuteJob(t *testing.T) {
 		opts.JobServiceFromSpecification = &JobServiceFromSpecification{
 			Specification: String("SPEC"),
 		}
-		opts.ExternalAccessIntegrations = &ServiceExternalAccessIntegrations{
+		opts.ExternalAccessIntegrations = &ExternalAccessIntegrationsList{
 			ExternalAccessIntegrations: []AccountObjectIdentifier{
 				integration1Id,
 			},

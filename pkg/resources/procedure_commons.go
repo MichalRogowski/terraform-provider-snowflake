@@ -441,7 +441,7 @@ func UpdateProcedure(language string, readFunc func(ctx context.Context, d *sche
 							if len(references) == 0 {
 								return unsetRequest.WithExternalAccessIntegrations(true)
 							} else {
-								return setRequest.WithExternalAccessIntegrations(references)
+								return setRequest.WithExternalAccessIntegrations(sdk.ExternalAccessIntegrationsListRequest{ExternalAccessIntegrations: references})
 							}
 						})
 					}

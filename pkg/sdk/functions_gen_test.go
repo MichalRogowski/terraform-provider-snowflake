@@ -1190,6 +1190,17 @@ func TestFunctions_Alter(t *testing.T) {
 		assertOptsValidAndSQLEquals(t, opts, `ALTER FUNCTION IF EXISTS %s SET SECRETS = ('abc' = %s)`, id.FullyQualifiedName(), secretId.FullyQualifiedName())
 	})
 
+	t.Run("alter: set external access integrations", func(t *testing.T) {
+		integrationId := NewAccountObjectIdentifier("integration")
+		opts := defaultOpts()
+		opts.Set = &FunctionSet{
+			ExternalAccessIntegrations: &ExternalAccessIntegrationsList{
+				ExternalAccessIntegrations: []AccountObjectIdentifier{integrationId},
+			},
+		}
+		assertOptsValidAndSQLEquals(t, opts, `ALTER FUNCTION IF EXISTS %s SET EXTERNAL_ACCESS_INTEGRATIONS = (%s)`, id.FullyQualifiedName(), integrationId.FullyQualifiedName())
+	})
+
 	t.Run("alter: unset", func(t *testing.T) {
 		opts := defaultOpts()
 		opts.Unset = &FunctionUnset{

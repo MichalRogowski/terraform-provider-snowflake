@@ -446,7 +446,7 @@ func UpdateFunction(language string, readFunc func(ctx context.Context, d *schem
 							if len(references) == 0 {
 								return unsetRequest.WithExternalAccessIntegrations(true)
 							} else {
-								return setRequest.WithExternalAccessIntegrations(references)
+								return setRequest.WithExternalAccessIntegrations(sdk.ExternalAccessIntegrationsListRequest{ExternalAccessIntegrations: references})
 							}
 						})
 					}

@@ -6,14 +6,15 @@ import (
 	"github.com/Snowflake-Labs/terraform-provider-snowflake/pkg/sdk/generator/gen/sdkcommons"
 )
 
-var externalAccessIntegrations = g.NewQueryStruct("ExternalAccessIntegrations").
-	List("ExternalAccessIntegrations", "AccountObjectIdentifier", g.ListOptions().Required().MustParentheses())
+var externalAccessIntegrationsList = g.NewQueryStruct("ExternalAccessIntegrationsList").
+	List("ExternalAccessIntegrations", "AccountObjectIdentifier", g.ListOptions().Required().MustParentheses()).
+	WithSharedToOpts()
 
 var streamlitSet = g.NewQueryStruct("StreamlitSet").
 	OptionalTextAssignment("ROOT_LOCATION", g.ParameterOptions().SingleQuotes()).
 	OptionalTextAssignment("MAIN_FILE", g.ParameterOptions().SingleQuotes()).
 	OptionalIdentifier("QueryWarehouse", g.KindOfT[sdkcommons.AccountObjectIdentifier](), g.IdentifierOptions().Equals().SQL("QUERY_WAREHOUSE")).
-	OptionalQueryStructField("ExternalAccessIntegrations", externalAccessIntegrations, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+	OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 	OptionalTextAssignment("COMMENT", g.ParameterOptions().SingleQuotes()).
 	OptionalTextAssignment("TITLE", g.ParameterOptions().SingleQuotes()).
 	WithValidation(g.ValidIdentifierIfSet, "QueryWarehouse").
@@ -40,7 +41,7 @@ var streamlitsDef = g.NewInterface(
 		TextAssignment("ROOT_LOCATION", g.ParameterOptions().SingleQuotes().Required()).
 		TextAssignment("MAIN_FILE", g.ParameterOptions().SingleQuotes().Required()).
 		OptionalIdentifier("QueryWarehouse", g.KindOfT[sdkcommons.AccountObjectIdentifier](), g.IdentifierOptions().Equals().SQL("QUERY_WAREHOUSE")).
-		OptionalQueryStructField("ExternalAccessIntegrations", externalAccessIntegrations, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+		OptionalQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 		OptionalTextAssignment("TITLE", g.ParameterOptions().SingleQuotes()).
 		OptionalTextAssignment("COMMENT", g.ParameterOptions().SingleQuotes()).
 		WithValidation(g.ValidIdentifier, "name").

@@ -21,9 +21,6 @@ var OpenflowRuntimeStatusEnumDef = g.NewEnum(
 	"GENERATING_DIAGNOSTIC_BUNDLE", "CLEANING_UP", "INACTIVE",
 )
 
-var openflowRuntimesExternalAccessIntegrationsDef = g.NewQueryStruct("OpenflowRuntimeExternalAccessIntegrations").
-	List("ExternalAccessIntegrations", g.KindOfT[sdkcommons.AccountObjectIdentifier](), g.ListOptions().Required().MustParentheses())
-
 var openflowRuntimesDef = g.NewInterface(
 	"OpenflowRuntimes",
 	"OpenflowRuntime",
@@ -40,7 +37,7 @@ var openflowRuntimesDef = g.NewInterface(
 		Assignment("NODE_TYPE", OpenflowRuntimeNodeTypeEnumDef.Kind(), g.ParameterOptions().SingleQuotes().Required()).
 		NumberAssignment("MIN_NODES", g.ParameterOptions().Required()).
 		NumberAssignment("MAX_NODES", g.ParameterOptions().Required()).
-		OptionalQueryStructField("ExternalAccessIntegrations", openflowRuntimesExternalAccessIntegrationsDef, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+		OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 		OptionalTextAssignment("DISPLAY_NAME", g.ParameterOptions().SingleQuotes()).
 		OptionalTextAssignment("COMMENT", g.ParameterOptions().SingleQuotes()).
 		WithValidation(g.ValidIdentifier, "name").
@@ -67,7 +64,7 @@ var openflowRuntimesDef = g.NewInterface(
 				OptionalNumberAssignment("MIN_NODES", g.ParameterOptions()).
 				OptionalNumberAssignment("MAX_NODES", g.ParameterOptions()).
 				OptionalIdentifier("ExecuteAsRole", g.KindOfTPointer[sdkcommons.AccountObjectIdentifier](), g.IdentifierOptions().SQL("EXECUTE_AS_ROLE").Equals()).
-				OptionalQueryStructField("ExternalAccessIntegrations", openflowRuntimesExternalAccessIntegrationsDef, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+				OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 				OptionalTextAssignment("DISPLAY_NAME", g.ParameterOptions().SingleQuotes()).
 				OptionalTextAssignment("COMMENT", g.ParameterOptions().SingleQuotes()).
 				WithValidation(g.AtLeastOneValueSet, "MinNodes", "MaxNodes", "ExecuteAsRole", "ExternalAccessIntegrations", "DisplayName", "Comment"),

@@ -659,8 +659,8 @@ func (s *FunctionSetRequest) WithComment(comment string) *FunctionSetRequest {
 	return s
 }
 
-func (s *FunctionSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations []AccountObjectIdentifier) *FunctionSetRequest {
-	s.ExternalAccessIntegrations = externalAccessIntegrations
+func (s *FunctionSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *FunctionSetRequest {
+	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }
 

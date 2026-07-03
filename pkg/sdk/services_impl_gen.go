@@ -107,9 +107,7 @@ func (r *CreateServiceRequest) toOpts() *CreateServiceOptions {
 		}
 	}
 	if r.ExternalAccessIntegrations != nil {
-		opts.ExternalAccessIntegrations = &ServiceExternalAccessIntegrations{
-			ExternalAccessIntegrations: r.ExternalAccessIntegrations.ExternalAccessIntegrations,
-		}
+		opts.ExternalAccessIntegrations = r.ExternalAccessIntegrations.toOpts()
 	}
 	return opts
 }
@@ -156,9 +154,7 @@ func (r *AlterServiceRequest) toOpts() *AlterServiceOptions {
 			Comment:           r.Set.Comment,
 		}
 		if r.Set.ExternalAccessIntegrations != nil {
-			opts.Set.ExternalAccessIntegrations = &ServiceExternalAccessIntegrations{
-				ExternalAccessIntegrations: r.Set.ExternalAccessIntegrations.ExternalAccessIntegrations,
-			}
+			opts.Set.ExternalAccessIntegrations = r.Set.ExternalAccessIntegrations.toOpts()
 		}
 	}
 	if r.Unset != nil {
@@ -291,9 +287,7 @@ func (r *ExecuteJobServiceRequest) toOpts() *ExecuteJobServiceOptions {
 		Tag:            r.Tag,
 	}
 	if r.ExternalAccessIntegrations != nil {
-		opts.ExternalAccessIntegrations = &ServiceExternalAccessIntegrations{
-			ExternalAccessIntegrations: r.ExternalAccessIntegrations.ExternalAccessIntegrations,
-		}
+		opts.ExternalAccessIntegrations = r.ExternalAccessIntegrations.toOpts()
 	}
 	if r.JobServiceFromSpecification != nil {
 		opts.JobServiceFromSpecification = &JobServiceFromSpecification{

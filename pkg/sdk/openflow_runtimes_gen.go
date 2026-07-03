@@ -21,22 +21,18 @@ type OpenflowRuntimes interface {
 
 // CreateOpenflowRuntimeOptions is based on TODO: add link when public docs are available.
 type CreateOpenflowRuntimeOptions struct {
-	create                     bool                                       `ddl:"static" sql:"CREATE"`
-	openflowRuntime            bool                                       `ddl:"static" sql:"OPENFLOW RUNTIME"`
-	IfNotExists                *bool                                      `ddl:"keyword" sql:"IF NOT EXISTS"`
-	name                       SchemaObjectIdentifier                     `ddl:"identifier"`
-	InDeployment               AccountObjectIdentifier                    `ddl:"identifier" sql:"IN DEPLOYMENT"`
-	ExecuteAsRole              AccountObjectIdentifier                    `ddl:"identifier,equals" sql:"EXECUTE_AS_ROLE"`
-	NodeType                   OpenflowRuntimeNodeType                    `ddl:"parameter,single_quotes" sql:"NODE_TYPE"`
-	MinNodes                   int                                        `ddl:"parameter" sql:"MIN_NODES"`
-	MaxNodes                   int                                        `ddl:"parameter" sql:"MAX_NODES"`
-	ExternalAccessIntegrations *OpenflowRuntimeExternalAccessIntegrations `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
-	DisplayName                *string                                    `ddl:"parameter,single_quotes" sql:"DISPLAY_NAME"`
-	Comment                    *string                                    `ddl:"parameter,single_quotes" sql:"COMMENT"`
-}
-
-type OpenflowRuntimeExternalAccessIntegrations struct {
-	ExternalAccessIntegrations []AccountObjectIdentifier `ddl:"list,must_parentheses"`
+	create                     bool                            `ddl:"static" sql:"CREATE"`
+	openflowRuntime            bool                            `ddl:"static" sql:"OPENFLOW RUNTIME"`
+	IfNotExists                *bool                           `ddl:"keyword" sql:"IF NOT EXISTS"`
+	name                       SchemaObjectIdentifier          `ddl:"identifier"`
+	InDeployment               AccountObjectIdentifier         `ddl:"identifier" sql:"IN DEPLOYMENT"`
+	ExecuteAsRole              AccountObjectIdentifier         `ddl:"identifier,equals" sql:"EXECUTE_AS_ROLE"`
+	NodeType                   OpenflowRuntimeNodeType         `ddl:"parameter,single_quotes" sql:"NODE_TYPE"`
+	MinNodes                   int                             `ddl:"parameter" sql:"MIN_NODES"`
+	MaxNodes                   int                             `ddl:"parameter" sql:"MAX_NODES"`
+	ExternalAccessIntegrations *ExternalAccessIntegrationsList `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
+	DisplayName                *string                         `ddl:"parameter,single_quotes" sql:"DISPLAY_NAME"`
+	Comment                    *string                         `ddl:"parameter,single_quotes" sql:"COMMENT"`
 }
 
 // AlterOpenflowRuntimeOptions is based on TODO: add link when public docs are available.
@@ -58,12 +54,12 @@ type AlterOpenflowRuntimeOptions struct {
 }
 
 type OpenflowRuntimeSet struct {
-	MinNodes                   *int                                       `ddl:"parameter" sql:"MIN_NODES"`
-	MaxNodes                   *int                                       `ddl:"parameter" sql:"MAX_NODES"`
-	ExecuteAsRole              *AccountObjectIdentifier                   `ddl:"identifier,equals" sql:"EXECUTE_AS_ROLE"`
-	ExternalAccessIntegrations *OpenflowRuntimeExternalAccessIntegrations `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
-	DisplayName                *string                                    `ddl:"parameter,single_quotes" sql:"DISPLAY_NAME"`
-	Comment                    *string                                    `ddl:"parameter,single_quotes" sql:"COMMENT"`
+	MinNodes                   *int                            `ddl:"parameter" sql:"MIN_NODES"`
+	MaxNodes                   *int                            `ddl:"parameter" sql:"MAX_NODES"`
+	ExecuteAsRole              *AccountObjectIdentifier        `ddl:"identifier,equals" sql:"EXECUTE_AS_ROLE"`
+	ExternalAccessIntegrations *ExternalAccessIntegrationsList `ddl:"parameter,parentheses" sql:"EXTERNAL_ACCESS_INTEGRATIONS"`
+	DisplayName                *string                         `ddl:"parameter,single_quotes" sql:"DISPLAY_NAME"`
+	Comment                    *string                         `ddl:"parameter,single_quotes" sql:"COMMENT"`
 }
 
 type OpenflowRuntimeUnset struct {

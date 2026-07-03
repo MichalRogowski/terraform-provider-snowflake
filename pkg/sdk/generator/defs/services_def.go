@@ -6,9 +6,6 @@ import (
 	"github.com/Snowflake-Labs/terraform-provider-snowflake/pkg/sdk/generator/gen/sdkcommons"
 )
 
-var serviceExternalAccessIntegrationsDef = g.NewQueryStruct("ServiceExternalAccessIntegrations").
-	List("ExternalAccessIntegrations", g.KindOfT[sdkcommons.AccountObjectIdentifier](), g.ListOptions().Required().MustParentheses())
-
 var listItemDef = g.NewQueryStruct("ListItem").
 	Text("Key", g.KeywordOptions().Required().DoubleQuotes()).
 	SQLWithCustomFieldName("arrowEquals", "=>").
@@ -69,7 +66,7 @@ var servicesDef = g.NewInterface(
 		OptionalQueryStructField("FromSpecification", serviceFromSpecificationDef, g.KeywordOptions()).
 		OptionalQueryStructField("FromSpecificationTemplate", serviceFromSpecificationTemplateDef, g.KeywordOptions()).
 		OptionalNumberAssignment("AUTO_SUSPEND_SECS", g.ParameterOptions()).
-		OptionalQueryStructField("ExternalAccessIntegrations", serviceExternalAccessIntegrationsDef, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+		OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 		OptionalBooleanAssignment("AUTO_RESUME", g.ParameterOptions()).
 		OptionalNumberAssignment("MIN_INSTANCES", g.ParameterOptions()).
 		OptionalNumberAssignment("MIN_READY_INSTANCES", g.ParameterOptions()).
@@ -81,7 +78,6 @@ var servicesDef = g.NewInterface(
 		WithValidation(g.ExactlyOneValueSet, "FromSpecification", "FromSpecificationTemplate").
 		WithValidation(g.ValidIdentifierIfSet, "QueryWarehouse").
 		WithAdditionalValidations(),
-	serviceExternalAccessIntegrationsDef,
 	listItemDef,
 	serviceFromSpecificationDef,
 	serviceFromSpecificationTemplateDef,
@@ -114,7 +110,7 @@ var servicesDef = g.NewInterface(
 				OptionalNumberAssignment("MIN_READY_INSTANCES", g.ParameterOptions()).
 				OptionalIdentifier("QueryWarehouse", g.KindOfT[sdkcommons.AccountObjectIdentifier](), g.IdentifierOptions().Equals().SQL("QUERY_WAREHOUSE")).
 				OptionalBooleanAssignment("AUTO_RESUME", g.ParameterOptions()).
-				OptionalQueryStructField("ExternalAccessIntegrations", serviceExternalAccessIntegrationsDef, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+				OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 				OptionalComment().
 				WithValidation(g.ValidIdentifierIfSet, "QueryWarehouse").
 				WithValidation(g.AtLeastOneValueSet, "MinInstances", "MaxInstances", "AutoSuspendSecs", "MinReadyInstances", "QueryWarehouse", "AutoResume", "ExternalAccessIntegrations", "Comment").
@@ -240,7 +236,7 @@ var servicesDef = g.NewInterface(
 		OptionalBooleanAssignment("ASYNC", g.ParameterOptions()).
 		OptionalIdentifier("QueryWarehouse", g.KindOfT[sdkcommons.AccountObjectIdentifier](), g.IdentifierOptions().Equals().SQL("QUERY_WAREHOUSE")).
 		OptionalComment().
-		OptionalQueryStructField("ExternalAccessIntegrations", serviceExternalAccessIntegrationsDef, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
+		OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 		OptionalQueryStructField("JobServiceFromSpecification", jobServiceFromSpecificationDef, g.KeywordOptions()).
 		OptionalQueryStructField("JobServiceFromSpecificationTemplate", jobServiceFromSpecificationTemplateDef, g.KeywordOptions()).
 		OptionalTags().

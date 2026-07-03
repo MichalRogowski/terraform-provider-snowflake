@@ -185,7 +185,7 @@ type AlterFunctionRequest struct {
 
 type FunctionSetRequest struct {
 	Comment                    *string
-	ExternalAccessIntegrations []AccountObjectIdentifier
+	ExternalAccessIntegrations *ExternalAccessIntegrationsListRequest
 	SecretsList                *SecretsListRequest
 	EnableConsoleOutput        *bool
 	LogLevel                   *LogLevel

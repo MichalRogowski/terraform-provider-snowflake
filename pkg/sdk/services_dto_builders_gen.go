@@ -32,7 +32,7 @@ func (s *CreateServiceRequest) WithAutoSuspendSecs(autoSuspendSecs int) *CreateS
 	return s
 }
 
-func (s *CreateServiceRequest) WithExternalAccessIntegrations(externalAccessIntegrations ServiceExternalAccessIntegrationsRequest) *CreateServiceRequest {
+func (s *CreateServiceRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *CreateServiceRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }
@@ -113,14 +113,6 @@ func (s *ServiceFromSpecificationTemplateRequest) WithSpecificationTemplateFile(
 func (s *ServiceFromSpecificationTemplateRequest) WithSpecificationTemplate(specificationTemplate string) *ServiceFromSpecificationTemplateRequest {
 	s.SpecificationTemplate = &specificationTemplate
 	return s
-}
-
-func NewServiceExternalAccessIntegrationsRequest(
-	externalAccessIntegrations []AccountObjectIdentifier,
-) *ServiceExternalAccessIntegrationsRequest {
-	s := ServiceExternalAccessIntegrationsRequest{}
-	s.ExternalAccessIntegrations = externalAccessIntegrations
-	return &s
 }
 
 func NewAlterServiceRequest(
@@ -228,7 +220,7 @@ func (s *ServiceSetRequest) WithAutoResume(autoResume bool) *ServiceSetRequest {
 	return s
 }
 
-func (s *ServiceSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ServiceExternalAccessIntegrationsRequest) *ServiceSetRequest {
+func (s *ServiceSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *ServiceSetRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }
@@ -369,7 +361,7 @@ func (s *ExecuteJobServiceRequest) WithComment(comment string) *ExecuteJobServic
 	return s
 }
 
-func (s *ExecuteJobServiceRequest) WithExternalAccessIntegrations(externalAccessIntegrations ServiceExternalAccessIntegrationsRequest) *ExecuteJobServiceRequest {
+func (s *ExecuteJobServiceRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *ExecuteJobServiceRequest {
 	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }

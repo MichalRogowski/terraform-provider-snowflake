@@ -541,8 +541,8 @@ func (s *ProcedureSetRequest) WithComment(comment string) *ProcedureSetRequest {
 	return s
 }
 
-func (s *ProcedureSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations []AccountObjectIdentifier) *ProcedureSetRequest {
-	s.ExternalAccessIntegrations = externalAccessIntegrations
+func (s *ProcedureSetRequest) WithExternalAccessIntegrations(externalAccessIntegrations ExternalAccessIntegrationsListRequest) *ProcedureSetRequest {
+	s.ExternalAccessIntegrations = &externalAccessIntegrations
 	return s
 }
 

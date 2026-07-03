@@ -260,7 +260,7 @@ func TestInt_Services(t *testing.T) {
 		request := sdk.NewCreateServiceRequest(id, computePool.ID()).
 			WithFromSpecification(*sdk.NewServiceFromSpecificationRequest().WithSpecification(spec)).
 			WithAutoSuspendSecs(3600).
-			WithExternalAccessIntegrations(*sdk.NewServiceExternalAccessIntegrationsRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
+			WithExternalAccessIntegrations(*sdk.NewExternalAccessIntegrationsListRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
 			WithAutoResume(true).
 			WithMinInstances(1).
 			WithMinReadyInstances(1).
@@ -377,7 +377,7 @@ func TestInt_Services(t *testing.T) {
 			AutoSuspendSecs:            sdk.Pointer(3600),
 			QueryWarehouse:             sdk.Pointer(testClientHelper().Ids.WarehouseId()),
 			AutoResume:                 sdk.Pointer(true),
-			ExternalAccessIntegrations: sdk.NewServiceExternalAccessIntegrationsRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId}),
+			ExternalAccessIntegrations: sdk.NewExternalAccessIntegrationsListRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId}),
 			Comment:                    sdk.Pointer(comment),
 		}))
 		require.NoError(t, err)
@@ -407,7 +407,7 @@ func TestInt_Services(t *testing.T) {
 			WithMinInstances(2).
 			WithMaxInstances(3).
 			WithQueryWarehouse(testClientHelper().Ids.WarehouseId()).
-			WithExternalAccessIntegrations(*sdk.NewServiceExternalAccessIntegrationsRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
+			WithExternalAccessIntegrations(*sdk.NewExternalAccessIntegrationsListRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
 			WithComment(comment).
 			WithAutoSuspendSecs(3600).
 			WithMinReadyInstances(1)
@@ -580,7 +580,7 @@ func TestInt_Services(t *testing.T) {
 		request := sdk.NewExecuteJobServiceRequest(computePool.ID(), id).
 			WithJobServiceFromSpecification(*sdk.NewJobServiceFromSpecificationRequest().WithSpecification(spec)).
 			WithAsync(true).
-			WithExternalAccessIntegrations(*sdk.NewServiceExternalAccessIntegrationsRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
+			WithExternalAccessIntegrations(*sdk.NewExternalAccessIntegrationsListRequest([]sdk.AccountObjectIdentifier{externalAccessIntegrationId})).
 			WithQueryWarehouse(testClientHelper().Ids.WarehouseId()).
 			WithComment(comment)
 

@@ -422,13 +422,15 @@ func (r *AlterFunctionRequest) toOpts() *AlterFunctionOptions {
 	}
 	if r.Set != nil {
 		opts.Set = &FunctionSet{
-			Comment:                    r.Set.Comment,
-			ExternalAccessIntegrations: r.Set.ExternalAccessIntegrations,
-			EnableConsoleOutput:        r.Set.EnableConsoleOutput,
-			LogLevel:                   r.Set.LogLevel,
-			LogEventLevel:              r.Set.LogEventLevel,
-			MetricLevel:                r.Set.MetricLevel,
-			TraceLevel:                 r.Set.TraceLevel,
+			Comment:             r.Set.Comment,
+			EnableConsoleOutput: r.Set.EnableConsoleOutput,
+			LogLevel:            r.Set.LogLevel,
+			LogEventLevel:       r.Set.LogEventLevel,
+			MetricLevel:         r.Set.MetricLevel,
+			TraceLevel:          r.Set.TraceLevel,
+		}
+		if r.Set.ExternalAccessIntegrations != nil {
+			opts.Set.ExternalAccessIntegrations = r.Set.ExternalAccessIntegrations.toOpts()
 		}
 		if r.Set.SecretsList != nil {
 			opts.Set.SecretsList = r.Set.SecretsList.toOpts()

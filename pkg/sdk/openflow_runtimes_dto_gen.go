@@ -18,13 +18,9 @@ type CreateOpenflowRuntimeRequest struct {
 	NodeType                   OpenflowRuntimeNodeType // required
 	MinNodes                   int                     // required
 	MaxNodes                   int                     // required
-	ExternalAccessIntegrations *OpenflowRuntimeExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations *ExternalAccessIntegrationsListRequest
 	DisplayName                *string
 	Comment                    *string
-}
-
-type OpenflowRuntimeExternalAccessIntegrationsRequest struct {
-	ExternalAccessIntegrations []AccountObjectIdentifier // required
 }
 
 type AlterOpenflowRuntimeRequest struct {
@@ -46,7 +42,7 @@ type OpenflowRuntimeSetRequest struct {
 	MinNodes                   *int
 	MaxNodes                   *int
 	ExecuteAsRole              *AccountObjectIdentifier
-	ExternalAccessIntegrations *OpenflowRuntimeExternalAccessIntegrationsRequest
+	ExternalAccessIntegrations *ExternalAccessIntegrationsListRequest
 	DisplayName                *string
 	Comment                    *string
 }

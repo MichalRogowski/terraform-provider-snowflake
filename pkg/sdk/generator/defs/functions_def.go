@@ -315,7 +315,7 @@ var functionsDef = g.NewInterface(
 			"Set",
 			g.NewQueryStruct("FunctionSet").
 				OptionalTextAssignment("COMMENT", g.ParameterOptions().SingleQuotes()).
-				ListAssignment("EXTERNAL_ACCESS_INTEGRATIONS", "AccountObjectIdentifier", g.ParameterOptions().Parentheses()).
+				OptionalSharedQueryStructField("ExternalAccessIntegrations", externalAccessIntegrationsList, g.ParameterOptions().SQL("EXTERNAL_ACCESS_INTEGRATIONS").Parentheses()).
 				OptionalQueryStructField("SecretsList", functionSecretsListWrapper, g.ParameterOptions().SQL("SECRETS").Parentheses()).
 				OptionalBooleanAssignment("ENABLE_CONSOLE_OUTPUT", nil).
 				OptionalAssignment("LOG_LEVEL", g.KindOfTPointer[sdkcommons.LogLevel](), g.ParameterOptions().SingleQuotes()).

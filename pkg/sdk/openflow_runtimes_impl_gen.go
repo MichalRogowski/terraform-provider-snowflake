@@ -85,9 +85,7 @@ func (r *CreateOpenflowRuntimeRequest) toOpts() *CreateOpenflowRuntimeOptions {
 		Comment:       r.Comment,
 	}
 	if r.ExternalAccessIntegrations != nil {
-		opts.ExternalAccessIntegrations = &OpenflowRuntimeExternalAccessIntegrations{
-			ExternalAccessIntegrations: r.ExternalAccessIntegrations.ExternalAccessIntegrations,
-		}
+		opts.ExternalAccessIntegrations = r.ExternalAccessIntegrations.toOpts()
 	}
 	return opts
 }
@@ -114,9 +112,7 @@ func (r *AlterOpenflowRuntimeRequest) toOpts() *AlterOpenflowRuntimeOptions {
 			Comment:       r.Set.Comment,
 		}
 		if r.Set.ExternalAccessIntegrations != nil {
-			opts.Set.ExternalAccessIntegrations = &OpenflowRuntimeExternalAccessIntegrations{
-				ExternalAccessIntegrations: r.Set.ExternalAccessIntegrations.ExternalAccessIntegrations,
-			}
+			opts.Set.ExternalAccessIntegrations = r.Set.ExternalAccessIntegrations.toOpts()
 		}
 	}
 	if r.Unset != nil {
