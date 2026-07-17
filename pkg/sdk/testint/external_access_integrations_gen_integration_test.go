@@ -45,12 +45,13 @@ func TestInt_ExternalAccessIntegrations(t *testing.T) {
 		integration, err := client.ExternalAccessIntegrations.ShowByID(ctx, id)
 		require.NoError(t, err)
 
-		assertThatObject(t, objectassert.ExternalAccessIntegrationFromObject(t, integration).
-			HasName(id.Name()).
-			HasExternalAccessType("EXTERNAL_ACCESS").
-			HasCategory("EXTERNAL_ACCESS").
-			HasEnabled(true).
-			HasComment(""),
+		assertThatObject(
+			t, objectassert.ExternalAccessIntegrationFromObject(t, integration).
+				HasName(id.Name()).
+				HasExternalAccessType("EXTERNAL_ACCESS").
+				HasCategory("EXTERNAL_ACCESS").
+				HasEnabled(true).
+				HasComment(""),
 		)
 	})
 
@@ -71,10 +72,11 @@ func TestInt_ExternalAccessIntegrations(t *testing.T) {
 		require.NoError(t, err)
 		t.Cleanup(testClientHelper().ExternalAccessIntegration.DropExternalAccessIntegrationFunc(t, id))
 
-		assertThatObject(t, objectassert.ExternalAccessIntegration(t, id).
-			HasName(id.Name()).
-			HasEnabled(true).
-			HasComment(comment),
+		assertThatObject(
+			t, objectassert.ExternalAccessIntegration(t, id).
+				HasName(id.Name()).
+				HasEnabled(true).
+				HasComment(comment),
 		)
 
 		props, err := client.ExternalAccessIntegrations.Describe(ctx, id)
@@ -103,9 +105,10 @@ func TestInt_ExternalAccessIntegrations(t *testing.T) {
 				WithComment(comment)))
 		require.NoError(t, err)
 
-		assertThatObject(t, objectassert.ExternalAccessIntegration(t, id).
-			HasEnabled(false).
-			HasComment(comment),
+		assertThatObject(
+			t, objectassert.ExternalAccessIntegration(t, id).
+				HasEnabled(false).
+				HasComment(comment),
 		)
 	})
 
@@ -122,8 +125,9 @@ func TestInt_ExternalAccessIntegrations(t *testing.T) {
 			WithUnset(*sdk.NewExternalAccessIntegrationUnsetRequest().WithComment(true)))
 		require.NoError(t, err)
 
-		assertThatObject(t, objectassert.ExternalAccessIntegration(t, id).
-			HasComment(""),
+		assertThatObject(
+			t, objectassert.ExternalAccessIntegration(t, id).
+				HasComment(""),
 		)
 	})
 
