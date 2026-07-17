@@ -70,6 +70,10 @@ var allStructs = []SdkObjectDef{
 	},
 	{
 		IdType:       "sdk.AccountObjectIdentifier",
+		ObjectStruct: sdk.ExternalAccessIntegration{},
+	},
+	{
+		IdType:       "sdk.AccountObjectIdentifier",
 		ObjectStruct: sdk.ExternalVolume{},
 	},
 	{
