@@ -26,6 +26,12 @@ for changes required after enabling given [Snowflake BCR Bundle](https://docs.sn
 
 ## v2.17.0 ➞ v2.18.0
 
+### *(new feature)* New external access integration resource
+
+We have added a new preview resource for managing external access integrations: [snowflake_external_access_integration](https://registry.terraform.io/providers/snowflakedb/snowflake/latest/docs/resources/external_access_integration).
+
+This feature will be marked as stable in a future release. To use it, add `snowflake_external_access_integration_resource` to the `preview_features_enabled` field in the provider configuration.
+
 ### *(new feature)* New Postgres instance resource
 
 We have added a new preview resource for managing Postgres instances: [snowflake_postgres_instance](https://registry.terraform.io/providers/snowflakedb/snowflake/latest/docs/resources/postgres_instance).
