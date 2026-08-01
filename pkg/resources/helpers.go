@@ -296,6 +296,20 @@ func parseSchemaObjectIdentifierSet(v any) ([]sdk.SchemaObjectIdentifier, error)
 	return ids, nil
 }
 
+// parseAccountObjectIdentifierSet is a helper function to parse a given account object identifier list from ResourceData.
+func parseAccountObjectIdentifierSet(v any) ([]sdk.AccountObjectIdentifier, error) {
+	idsRaw := expandStringList(v.(*schema.Set).List())
+	ids := make([]sdk.AccountObjectIdentifier, len(idsRaw))
+	for i, idRaw := range idsRaw {
+		id, err := sdk.ParseAccountObjectIdentifier(idRaw)
+		if err != nil {
+			return nil, err
+		}
+		ids[i] = id
+	}
+	return ids, nil
+}
+
 type PlanCheckFunc func(ctx context.Context, req plancheck.CheckPlanRequest, resp *plancheck.CheckPlanResponse)
 
 func (fn PlanCheckFunc) CheckPlan(ctx context.Context, req plancheck.CheckPlanRequest, resp *plancheck.CheckPlanResponse) {
