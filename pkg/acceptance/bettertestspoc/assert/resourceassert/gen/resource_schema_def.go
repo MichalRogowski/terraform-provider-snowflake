@@ -134,6 +134,10 @@ var allResourceSchemaDefs = []ResourceSchemaDef{
 		schema: resources.Execute().Schema,
 	},
 	{
+		name:   "ExternalAccessIntegration",
+		schema: resources.ExternalAccessIntegration().Schema,
+	},
+	{
 		name:   "ExternalAzureStage",
 		schema: resources.ExternalAzureStage().Schema,
 	},
