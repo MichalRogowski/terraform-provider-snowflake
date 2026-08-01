@@ -47,7 +47,8 @@ func TestAcc_ExternalAccessIntegration_basic(t *testing.T) {
 					},
 				},
 				Config: config.FromModels(t, basicModel),
-				Check: assertThat(t,
+				Check: assertThat(
+					t,
 					resourceassert.ExternalAccessIntegrationResource(t, ref).
 						HasNameString(id.Name()).
 						HasEnabledString(r.BooleanFalse).
@@ -78,7 +79,8 @@ func TestAcc_ExternalAccessIntegration_basic(t *testing.T) {
 					},
 				},
 				Config: config.FromModels(t, updatedModel),
-				Check: assertThat(t,
+				Check: assertThat(
+					t,
 					resourceassert.ExternalAccessIntegrationResource(t, ref).
 						HasNameString(id.Name()).
 						HasEnabledString(r.BooleanTrue).
@@ -97,7 +99,8 @@ func TestAcc_ExternalAccessIntegration_basic(t *testing.T) {
 					},
 				},
 				Config: config.FromModels(t, basicModel),
-				Check: assertThat(t,
+				Check: assertThat(
+					t,
 					resourceassert.ExternalAccessIntegrationResource(t, ref).
 						HasEnabledString(r.BooleanFalse).
 						HasCommentEmpty(),
@@ -146,7 +149,8 @@ func TestAcc_ExternalAccessIntegration_complete(t *testing.T) {
 					},
 				},
 				Config: config.FromModels(t, completeModel),
-				Check: assertThat(t,
+				Check: assertThat(
+					t,
 					resourceassert.ExternalAccessIntegrationResource(t, ref).
 						HasNameString(id.Name()).
 						HasEnabledString(r.BooleanTrue).
@@ -177,7 +181,8 @@ func TestAcc_ExternalAccessIntegration_complete(t *testing.T) {
 					},
 				},
 				Config: config.FromModels(t, basicModel),
-				Check: assertThat(t,
+				Check: assertThat(
+					t,
 					resourceassert.ExternalAccessIntegrationResource(t, ref).
 						HasAllowedNetworkRules(networkRuleId).
 						HasAllowedApiAuthenticationIntegrationsEmpty().
