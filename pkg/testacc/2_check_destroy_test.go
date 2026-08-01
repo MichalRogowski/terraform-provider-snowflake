@@ -262,6 +262,9 @@ var showByIdFunctions = map[resources.Resource]runShowByIdFunc{
 	resources.ExternalS3CompatibleStage: func(ctx context.Context, client *sdk.Client, id sdk.ObjectIdentifier) error {
 		return runShowById(ctx, id, client.Stages.ShowByID)
 	},
+	resources.ExternalAccessIntegration: func(ctx context.Context, client *sdk.Client, id sdk.ObjectIdentifier) error {
+		return runShowById(ctx, id, client.ExternalAccessIntegrations.ShowByID)
+	},
 	resources.ExternalFunction: func(ctx context.Context, client *sdk.Client, id sdk.ObjectIdentifier) error {
 		return runShowById(ctx, id, client.ExternalFunctions.ShowByID)
 	},
